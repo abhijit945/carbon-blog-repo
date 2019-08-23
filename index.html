@@ -1,111 +1,69 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta http-equiv="X-UA-Compatible" content="IE=10" />
-        <meta charset="UTF-8" />
-        <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"
-        />
-        <meta name="theme-color" content="#007cc3" />
-        <title>Carbon</title>
-    </head>
-    <body>
-        <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="tooltip" class="tooltip" style="display: none;"></div>
-        <main id="root"></main>
-        <script src="dist/js/carbon-graphs.js"></script>
-        <style>
-            body {
-                font-family: sans-serif;
-                font-size: 12px;
-            }
-        </style>
-        <link
-            rel="stylesheet"
-            type="text/css"
-            href="dist/css/carbon-graphs.css"
-        />
-        <script>
-            const TIMESERIES_AXIS = {
-                bindTo: "#root",
-                axis: {
-                    x: {
-                        type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
-                        label: "Datetime",
-                        lowerLimit: new Date(2016, 0, 1, 1, 0).toISOString(),
-                        upperLimit: new Date(2016, 0, 1, 23, 59).toISOString()
-                    },
-                    y: {
-                        label: "Temperature (degF)",
-                        lowerLimit: 90,
-                        upperLimit: 106
-                    }
-                }
-            };
-            const CONTENT_1 = {
-                key: "uid_1",
-                label: {
-                    display: "Oral"
-                },
-                shape: Carbon.helpers.SHAPES.RHOMBUS,
-                color: Carbon.helpers.COLORS.BLUE,
-                values: [
-                    {
-                        x: new Date(2016, 0, 1, 1, 5).toISOString(),
-                        y: 95
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 12, 15).toISOString(),
-                        y: 102
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 14, 15).toISOString(),
-                        y: 103
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 19, 45).toISOString(),
-                        y: 104
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 21, 15).toISOString(),
-                        y: 103
-                    }
-                ]
-            };
-            const CONTENT_2 = {
-                key: "uid_2",
-                label: {
-                    display: "Axilliary"
-                },
-                shape: Carbon.helpers.SHAPES.CIRCLE,
-                color: Carbon.helpers.COLORS.GREEN,
-                values: [
-                    {
-                        x: new Date(2016, 0, 1, 1, 5).toISOString(),
-                        y: 97
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 12, 15).toISOString(),
-                        y: 100
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 14, 15).toISOString(),
-                        y: 102
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 19, 45).toISOString(),
-                        y: 102
-                    },
-                    {
-                        x: new Date(2016, 0, 1, 21, 15).toISOString(),
-                        y: 100
-                    }
-                ]
-            };
-            const graph = Carbon.api.graph(TIMESERIES_AXIS);
-            graph.loadContent(Carbon.api.line(CONTENT_1));
-            graph.loadContent(Carbon.api.line(CONTENT_2));
-        </script>
-    </body>
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=10" />
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=0"
+    />
+    <meta name="theme-color" content="#007cc3" />
+    <title>Carbon</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="tooltip" class="tooltip" style="display: none;"></div>
+    <main id="root"></main>
+    <script src="dist/js/carbon-graphs.js"></script>
+    <style>
+      body {
+        font-family: sans-serif;
+        font-size: 12px;
+      }
+    </style>
+    <link rel="stylesheet" type="text/css" href="dist/css/carbon-graphs.css" />
+    <script>
+      const graphConfiguration = {
+        bindTo: "#root",
+        axis: {
+          x: {
+            type: Carbon.helpers.AXIS_TYPE.TIME_SERIES,
+            label: "Datetime",
+            lowerLimit: new Date(2016, 0, 1, 9, 0).toISOString(),
+            upperLimit: new Date(2016, 0, 1, 15, 59).toISOString()
+          },
+          y: {
+            label: "Temperature (degF)",
+            lowerLimit: 90,
+            upperLimit: 106
+          }
+        }
+      };
+      const dataset = {
+        key: "uid_1",
+        label: {
+          display: "Oral Temperature"
+        },
+        shape: Carbon.helpers.SHAPES.RHOMBUS,
+        color: Carbon.helpers.COLORS.BLUE,
+        values: [
+          {
+            x: new Date(2016, 0, 1, 10, 5).toISOString(),
+            y: 96.5
+          },
+          {
+            x: new Date(2016, 0, 1, 12, 15).toISOString(),
+            y: 98.7
+          },
+          {
+            x: new Date(2016, 0, 1, 14, 15).toISOString(),
+            y: 97.4
+          }
+        ]
+      };
+
+      const graph = Carbon.api.graph(graphConfiguration);
+      graph.loadContent(Carbon.api.line(dataset));
+    </script>
+  </body>
 </html>
